@@ -25,34 +25,34 @@ declare Choice
 end
 
 function String ask(JFrame frame, Choice choice) {
-        Object[] options = choice.getAnswers().toArray();
-        return options[JOptionPane.showOptionDialog(frame,
-                                             choice.getQuestion(),
-                                             "",
-                                             JOptionPane.YES_NO_OPTION,
-                                             JOptionPane.QUESTION_MESSAGE,
-                                             null,
-                                             options,
-                                             options[0])].toString();
+		Object[] options = choice.getAnswers().toArray();
+		return options[JOptionPane.showOptionDialog(frame,
+											 choice.getQuestion(),
+											 "",
+											 JOptionPane.YES_NO_OPTION,
+											 JOptionPane.QUESTION_MESSAGE,
+											 null,
+											 options,
+											 options[0])].toString();
 }
 
 function void showResult(String img){
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().setLayout(new BorderLayout());
+	JFrame frame = new JFrame();
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.getContentPane().setLayout(new BorderLayout());
 
-    JPanel panel = new JPanel();
-    panel.setLayout(new BorderLayout());
+	JPanel panel = new JPanel();
+	panel.setLayout(new BorderLayout());
 
-    URL url = new URL(img);
-    Image image = ImageIO.read(url);
+	URL url = new URL(img);
+	Image image = ImageIO.read(url);
 
-    JLabel label = new JLabel(new ImageIcon(image));
-    panel.add(label, BorderLayout.CENTER);
+	JLabel label = new JLabel(new ImageIcon(image));
+	panel.add(label, BorderLayout.CENTER);
 
-    frame.getContentPane().add(panel, BorderLayout.CENTER);
-    frame.pack();
-    frame.setVisible(true);
+	frame.getContentPane().add(panel, BorderLayout.CENTER);
+	frame.pack();
+	frame.setVisible(true);
 }
 
 rule "ask"
@@ -65,10 +65,10 @@ end
 
 rule "init"
 	then
-	    Choice choice = new Choice();
-	    choice.setQuestion("Do you want to avoid using much of your brain?");
-        choice.setAnswers( new ArrayList(Arrays.asList("Yes", "No")));
-        choice.setDecision("");
+		Choice choice = new Choice();
+		choice.setQuestion("Do you want to avoid using much of your brain?");
+		choice.setAnswers( new ArrayList(Arrays.asList("Yes", "No")));
+		choice.setDecision("");
 		insert(choice);
 end
 
@@ -76,15 +76,15 @@ rule "Do you want to avoid using much of your brain?"
 	when
 		c : Choice(question == "Do you want to avoid using much of your brain?")
 	then
-	    Choice choice = new Choice();
+		Choice choice = new Choice();
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    choice.setQuestion("How are your reflexes?");
-		    choice.setAnswers(new ArrayList(Arrays.asList("Unreal", "Average")));
+			choice.setQuestion("How are your reflexes?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Unreal", "Average")));
 		} else {
-            choice.setQuestion("Maximum creativity?");
-            choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+			choice.setQuestion("Maximum creativity?");
+			choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
 		}
-        choice.setDecision("");
+		choice.setDecision("");
 		insert(choice);
 end
 
@@ -92,15 +92,15 @@ rule "How are your reflexes?"
 	when
 		c : Choice(question == "How are your reflexes?")
 	then
-	    Choice choice = new Choice();
+		Choice choice = new Choice();
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    choice.setQuestion("Are you on drugs?");
-		    choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+			choice.setQuestion("Are you on drugs?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
 		} else {
-            choice.setQuestion("Do you want to point and click click click...?");
-            choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+			choice.setQuestion("Do you want to point and click click click...?");
+			choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
 		}
-        choice.setDecision("");
+		choice.setDecision("");
 		insert(choice);
 end
 
@@ -109,13 +109,13 @@ rule "Are you on drugs?"
 		c : Choice(question == "Are you on drugs?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("https://upload.wikimedia.org/wikipedia/en/7/71/RezBoxArt.jpg");
+			showResult("https://upload.wikimedia.org/wikipedia/en/7/71/RezBoxArt.jpg");
 		} else {
-	        Choice choice = new Choice();
-            choice.setQuestion("Do you want to feel like?");
-            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
-            choice.setDecision("");
-		    insert(choice);
+			Choice choice = new Choice();
+			choice.setQuestion("Do you want to feel like?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+			choice.setDecision("");
+			insert(choice);
 		}
 end
 
@@ -124,13 +124,13 @@ rule "Do you want to feel like?"
 		c : Choice(question == "Do you want to feel like?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("http://www.defunctgames.com/pic/reviewpics/reviewgeometrywars2xbla-2.jpg");
+			showResult("http://www.defunctgames.com/pic/reviewpics/reviewgeometrywars2xbla-2.jpg");
 		} else {
-	        Choice choice = new Choice();
-            choice.setQuestion("How's your timing?");
-            choice.setAnswers(new ArrayList(Arrays.asList("Superb", "Average")));
-            choice.setDecision("");
-		    insert(choice);
+			Choice choice = new Choice();
+			choice.setQuestion("How's your timing?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Superb", "Average")));
+			choice.setDecision("");
+			insert(choice);
 		}
 end
 
@@ -139,15 +139,15 @@ rule "How's your timing?"
 		c : Choice(question == "How's your timing?")
 	then
 		Choice choice = new Choice();
-    	if (c.getDecision().equals(c.getAnswers().get(0))) {
-    	    choice.setQuestion("You want to rock out?");
-    	    choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
-    	} else {
-            choice.setQuestion("Are 2 buttons to many for you?");
-            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
-    	}
-        choice.setDecision("");
-    	insert(choice);
+		if (c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("You want to rock out?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Are 2 buttons to many for you?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		}
+		choice.setDecision("");
+		insert(choice);
 end
 
 rule "You want to rock out?"
@@ -155,9 +155,9 @@ rule "You want to rock out?"
 		c : Choice(question == "You want to rock out?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("https://upload.wikimedia.org/wikipedia/en/3/3b/Rock_Band_3_Game_Cover.jpg");
+			showResult("https://upload.wikimedia.org/wikipedia/en/3/3b/Rock_Band_3_Game_Cover.jpg");
 		} else {
-	        showResult("https://images-na.ssl-images-amazon.com/images/I/51%2Be-1oylUL._SY445_.jpg");
+			showResult("https://images-na.ssl-images-amazon.com/images/I/51%2Be-1oylUL._SY445_.jpg");
 		}
 end
 
@@ -166,9 +166,9 @@ rule "Are 2 buttons to many for you?"
 		c : Choice(question == "Are 2 buttons to many for you?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("https://www.homeleisuredirect.com/Assets/HLD/User/16574-mc%20pacman%20.png");
+			showResult("https://www.homeleisuredirect.com/Assets/HLD/User/16574-mc%20pacman%20.png");
 		} else {
-	        showResult("http://www.mobygames.com/images/covers/l/78995-super-punch-out-snes-front-cover.png");
+			showResult("http://www.mobygames.com/images/covers/l/78995-super-punch-out-snes-front-cover.png");
 		}
 end
 
@@ -176,15 +176,15 @@ rule "Do you want to point and click click click...?"
 	when
 		c : Choice(question == "Do you want to point and click click click...?")
 	then
-	    Choice choice = new Choice();
+		Choice choice = new Choice();
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    choice.setQuestion("Do you want the hardest game ever?");
-		    choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+			choice.setQuestion("Do you want the hardest game ever?");
+			choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
 		} else {
-            choice.setQuestion("Do you plan on playing for the next week straight?");
-            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+			choice.setQuestion("Do you plan on playing for the next week straight?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
 		}
-        choice.setDecision("");
+		choice.setDecision("");
 		insert(choice);
 end
 
@@ -193,9 +193,9 @@ rule "Do you want the hardest game ever?"
 		c : Choice(question == "Do you want the hardest game ever?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("https://upload.wikimedia.org/wikipedia/en/thumb/7/77/Super_Monkey_Ball_Adventure_Coverart.png/220px-Super_Monkey_Ball_Adventure_Coverart.png");
+			showResult("https://upload.wikimedia.org/wikipedia/en/thumb/7/77/Super_Monkey_Ball_Adventure_Coverart.png/220px-Super_Monkey_Ball_Adventure_Coverart.png");
 		} else {
-	        showResult("https://upload.wikimedia.org/wikipedia/en/7/76/Devil_May_Cry_3_boxshot.jpg");
+			showResult("https://upload.wikimedia.org/wikipedia/en/7/76/Devil_May_Cry_3_boxshot.jpg");
 		}
 end
 
@@ -204,8 +204,333 @@ rule "Do you plan on playing for the next week straight?"
 		c : Choice(question == "Do you plan on playing for the next week straight?")
 	then
 		if (c.getDecision().equals(c.getAnswers().get(0))) {
-		    showResult("https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg");
+			showResult("https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg");
 		} else {
-	        showResult("https://upload.wikimedia.org/wikipedia/en/d/d5/Diablo_II_Coverart.png");
+			showResult("https://upload.wikimedia.org/wikipedia/en/d/d5/Diablo_II_Coverart.png");
 		}
+end
+
+rule "Maximum creativity?"
+	when
+		c : Choice(question == "Maximum creativity?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			Choice choice = new Choice();
+			choice.setQuestion("Do you want to solve some puzzles?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+			choice.setDecision("");
+			insert(choice);
+		} else {
+			showResult("http://www.mobygames.com/images/covers/l/319702-minecraft-playstation-4-edition-minecraft-plastic-texture-pack-playstation-4-front-cover.jpg");
+		}
+end
+
+rule "Do you want to solve some puzzles?"
+	when
+		c : Choice(question == "Do you want to solve some puzzles?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Do you feel the need for storyline as well?");
+			choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+		} else {
+			choice.setQuestion("Do you enjoy simulations?");
+            choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+		}
+		insert(choice);
+end
+
+rule "Do you feel the need for storyline as well?"
+	when
+		c : Choice(question == "Do you feel the need for storyline as well?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Kick it oldschool?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Are you an Edward Gorey fan?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		}
+		insert(choice);
+end
+
+rule "Kick it oldschool?"
+	when
+		c : Choice(question == "Kick it oldschool?")
+	then
+		if (c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("https://www.blogcdn.com/www.joystiq.com/media/2013/02/tetris.jpg");
+		} else {
+			showResult("https://static.gamespot.com/uploads/screen_kubrick/1551/15511094/3123122-lumines.jpg");
+		}
+end
+
+rule "Are you an Edward Gorey fan?"
+	when
+		c : Choice(question == "Are you an Edward Gorey fan?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://www.mobygames.com/images/covers/l/300355-limbo-playstation-4-front-cover.jpg");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Looking for crazy Japanese awesomeness?");
+            choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+		    insert(choice);
+		}
+end
+
+rule "Looking for crazy Japanese awesomeness?"
+	when
+		c : Choice(question == "Looking for crazy Japanese awesomeness?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Do you want shiny textures or indi magic?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Indi", "Shiny")));
+		    insert(choice);
+		} else {
+			showResult("https://upload.wikimedia.org/wikipedia/en/a/aa/KatamariDamacybox.jpg");
+		}
+end
+
+rule "Do you want shiny textures or indi magic?"
+	when
+		c : Choice(question == "Do you want shiny textures or indi magic?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+	    	showResult("https://e.snmc.io/lk/f/l/155559a5e55f4565829b33431af6bb9a/2939359.jpg");
+		} else {
+			showResult("http://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg?t=1490208943");
+		}
+end
+
+rule "Do you enjoy simulations?"
+	when
+		c : Choice(question == "Do you enjoy simulations?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Do you have multiple local players?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Do you want to be in charge of a life or an entire city?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Life", "City")));
+		}
+		insert(choice);
+end
+
+rule "Do you want to be in charge of a life or an entire city?"
+	when
+		c : Choice(question == "Do you want to be in charge of a life or an entire city?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+	    	showResult("https://images-eu.ssl-images-amazon.com/images/I/81oAbcVK0rL._SL1500_.jpg");
+		} else {
+			showResult("http://www.mobygames.com/images/covers/l/2042-simcity-2000-dos-front-cover.jpg");
+		}
+end
+
+rule "Do you have multiple local players?"
+	when
+		c : Choice(question == "Do you have multiple local players?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Button mashable?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Do you want to lose yourself in another world?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		}
+		insert(choice);
+end
+
+rule "Button mashable?"
+	when
+		c : Choice(question == "Button mashable?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Does realistic violence upset you?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Do you own any official team jerseys?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		}
+		insert(choice);
+end
+
+rule "Does realistic violence upset you?"
+	when
+		c : Choice(question == "Does realistic violence upset you?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("https://upload.wikimedia.org/wikipedia/en/a/af/Super_Smash_Bros_4_merged_logo%2C_no_subtitle.png");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Do you like big-ass weapons?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		    insert(choice);
+		}
+end
+
+rule "Do you like big-ass weapons?"
+	when
+		c : Choice(question == "Do you like big-ass weapons?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://antyapps.pl/wp-content/uploads/2013/11/2013-11-22_094316.jpg");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Do you want to tear out your opponent's spine?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		    insert(choice);
+		}
+end
+
+rule "Do you want to tear out your opponent's spine?"
+	when
+		c : Choice(question == "Do you want to tear out your opponent's spine?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("https://www.mksecrets.net/images/mk9/logo04.jpg");
+		} else {
+	    	showResult("https://static.giantbomb.com/uploads/scale_medium/8/87790/1832165-box_ssf4.png");
+		}
+end
+
+rule "Do you own any official team jerseys?"
+	when
+		c : Choice(question == "Do you own any official team jerseys?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://www.chelseafc.com/content/cfc/en/archived/club/sponsors/club/ea-sports.img.png");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Does the sound of squealing tires excite you?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		    insert(choice);
+		}
+end
+
+rule "Does the sound of squealing tires excite you?"
+	when
+		c : Choice(question == "Does the sound of squealing tires excite you?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Should racing games be based in reality?");
+			choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+		} else {
+			choice.setQuestion("Do you think professional wrestling is stupid?");
+            choice.setAnswers(new ArrayList(Arrays.asList("No", "Yes")));
+		}
+		insert(choice);
+end
+
+rule "Should racing games be based in reality?"
+	when
+		c : Choice(question == "Should racing games be based in reality?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Super speed or turtle shells?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Speed", "Shells")));
+		} else {
+			choice.setQuestion("You want to be a badass?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		}
+		insert(choice);
+end
+
+rule "Do you want to tear out your opponent's spine?"
+	when
+		c : Choice(question == "Do you want to tear out your opponent's spine?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("https://upload.wikimedia.org/wikipedia/en/6/66/F-Zero_GX_box_artwork.png");
+		} else {
+	    	showResult("https://r.mprd.se/fup/up/39949-Mario_Kart_64_(USA)-1.jpg");
+		}
+end
+
+rule "You want to be a badass?"
+	when
+		c : Choice(question == "You want to be a badass?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://drivecenter.pl/sites/default/files/field/image/maxresdefault_2.jpg");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Rally or track?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Rally", "Track")));
+		    insert(choice);
+		}
+end
+
+rule "Rally or track?"
+	when
+		c : Choice(question == "Rally or track?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://www.gry-online.pl/galeria/gry13/414756718.jpg");
+		} else {
+	    	showResult("https://upload.wikimedia.org/wikipedia/en/0/0d/Gran_Turismo_3.jpg");
+		}
+end
+
+rule "Do you think professional wrestling is stupid?"
+	when
+		c : Choice(question == "Do you think professional wrestling is stupid?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("http://mywrestling.com.pl/wp-content/uploads/2017/09/nomer.jpg");
+		} else {
+	    	Choice choice = new Choice();
+	    	choice.setDecision("");
+			choice.setQuestion("Skate or [die] putt?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Skate", "Putt")));
+		    insert(choice);
+		}
+end
+
+rule "Skate or [die] putt?"
+	when
+		c : Choice(question == "Skate or [die] putt?")
+	then
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			showResult("https://upload.wikimedia.org/wikipedia/en/2/2b/Tony_Hawk%27s_Pro_Skater_3_Coverart.jpg");
+		} else {
+	    	showResult("http://img1.game-oldies.com/sites/default/files/packshots/sony-playstation/hot-shots-golf-usa.jpg");
+		}
+end
+
+rule "Do you want to lose yourself in another world?"
+	when
+		c : Choice(question == "Do you want to lose yourself in another world?")
+	then
+		Choice choice = new Choice();
+		choice.setDecision("");
+		if(c.getDecision().equals(c.getAnswers().get(0))) {
+			choice.setQuestion("Do you yearn to level up your character?");
+			choice.setAnswers(new ArrayList(Arrays.asList("Yes", "No")));
+		} else {
+			choice.setQuestion("Would you rather jump to platforms, or shoot someone in the face?");
+            choice.setAnswers(new ArrayList(Arrays.asList("Face", "Platform")));
+		}
+		insert(choice);
 end
